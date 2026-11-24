@@ -17,7 +17,7 @@ export default [
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   {
-    ignores: ['**/dist', 'node_modules'],
+    ignores: ['**/dist', '**/out-tsc', 'node_modules'],
   },
   {
     files: ['**/package.json'],
