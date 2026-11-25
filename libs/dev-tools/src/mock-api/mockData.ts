@@ -1,4 +1,9 @@
-import {EditSubscriber, Payment, Subscriber} from '@smarty-app/dx-api';
+import {
+  EditSubscriber,
+  Payment,
+  PromotionRecord,
+  Subscriber,
+} from '@smarty-app/dx-api';
 
 export const MOCK_SUBSCRIBER: Subscriber = {
   title: 'Ms',
@@ -7,6 +12,7 @@ export const MOCK_SUBSCRIBER: Subscriber = {
   dateOfBirth: '1990-04-12T00:00:00Z',
   email: 'alex.taylor@example.com',
   altContactNumber: '07700900123',
+  msisdn: '447700900123',
 };
 
 const MOCK_PAYMENT_COUNT = 100;
@@ -78,4 +84,41 @@ export function applySubscriberEdit(
   edit: EditSubscriber,
 ): Subscriber {
   return {...subscriber, ...edit};
+}
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+/**
+ * Builds the subscriber's promotions. The first has already expired, so the
+ * app has to skip it; the second is the one to feature.
+ *
+ * @returns The mock promotions.
+ */
+export function createMockPromotions(): PromotionRecord[] {
+  const now = Date.now();
+
+  return [
+    {
+      description: 'EU roaming pass',
+      voucherCode: 'ROAM10',
+      voucherToDate: new Date(now - 7 * DAY_MS).toISOString(),
+      fixedValue: 10,
+      fixedDiscount: 2,
+      fixedValueWithDiscount: 8,
+      currencyCode: 'GBP',
+    },
+    {
+      description: 'UK unlimited data pass',
+      voucherCode: 'DATA15',
+      voucherToDate: new Date(now + 30 * DAY_MS).toISOString(),
+      numberOfCredits: 3,
+      pendingCredits: 3,
+      consumedCredits: 0,
+      cancelledCredits: 0,
+      fixedValue: 20,
+      fixedDiscount: 5,
+      fixedValueWithDiscount: 15,
+      currencyCode: 'GBP',
+    },
+  ];
 }

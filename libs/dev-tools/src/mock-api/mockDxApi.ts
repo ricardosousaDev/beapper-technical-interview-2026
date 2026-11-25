@@ -5,6 +5,7 @@ import {EditSubscriber, Payment, Subscriber} from '@smarty-app/dx-api';
 import {
   applySubscriberEdit,
   createMockPayments,
+  createMockPromotions,
   createNewMockPayment,
   MOCK_SUBSCRIBER,
 } from './mockData';
@@ -15,7 +16,7 @@ const COMPONENT = 'mockDxApi';
  * Which situation the mock API acts out, to try each state of the screens.
  *
  * - `default`: everything succeeds.
- * - `empty`: the subscriber has no payments.
+ * - `empty`: the subscriber has no payments and no promotions.
  * - `error`: the first request for payment history fails; retrying succeeds.
  * - `next-page-error`: the first request for each later page of payment
  *   history fails; retrying succeeds.
@@ -155,6 +156,21 @@ export function createMockDxApiFetch(
     const path = url.pathname.replace(/\/+$/, '');
     if (path.endsWith('/subscriber/payment') && method === 'GET') {
       return getPaymentPage(url);
+    }
+    if (path.endsWith('/subscriber/promo') && method === 'GET') {
+      const msisdn = url.searchParams.get('msisdn');
+      if (!msisdn) {
+        return jsonResponse(400, {
+          status: 400,
+          title: 'Bad Request',
+          detail: 'Mock: msisdn is required.',
+        });
+      }
+      const isSubscriber = msisdn === subscriber.msisdn;
+      return jsonResponse(
+        200,
+        isSubscriber && scenario !== 'empty' ? createMockPromotions() : [],
+      );
     }
     if (path.endsWith('/subscriber')) {
       if (method === 'GET') {

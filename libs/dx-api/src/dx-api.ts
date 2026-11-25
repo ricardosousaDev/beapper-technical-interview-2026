@@ -48,6 +48,86 @@ export interface Subscriber {
    */
   email?: string;
   altContactNumber?: string;
+  /**
+   * The subscriber's mobile number, in international format without a leading +
+   * @pattern ^[\d]{10,15}$
+   * @example "447700900123"
+   */
+  msisdn?: string;
+}
+
+export interface PromotionRecord {
+  /**
+   * Human-readable description of the promotion
+   * @example "10% off next basket"
+   */
+  description?: string;
+  /**
+   * End date and time for voucher validity
+   * @format date-time
+   * @example "2025-06-30T23:59:59Z"
+   */
+  voucherToDate?: string;
+  /**
+   * Total number of credits for the promotion
+   * @format int32
+   * @example 10
+   */
+  numberOfCredits?: number;
+  /**
+   * Number of credits pending to be used
+   * @format int32
+   * @example 5
+   */
+  pendingCredits?: number;
+  /**
+   * Number of credits already consumed
+   * @format int32
+   * @example 3
+   */
+  consumedCredits?: number;
+  /**
+   * Number of credits that have been cancelled
+   * @format int32
+   * @example 2
+   */
+  cancelledCredits?: number;
+  /**
+   * Renewal months excluded from the promotion
+   * @example "2025-07,2025-08"
+   */
+  excludedRenewalMonths?: string;
+  /**
+   * Code for the voucher
+   * @example "PROMO2025"
+   */
+  voucherCode?: string;
+  /**
+   * Percentage discount offered
+   * @format int32
+   * @example 10
+   */
+  percentageDiscount?: number;
+  /**
+   * Fixed discount amount
+   * @example 15
+   */
+  fixedDiscount?: number;
+  /**
+   * Fixed value associated with the promotion
+   * @example 100
+   */
+  fixedValue?: number;
+  /**
+   * Fixed value with the discount applied
+   * @example 100
+   */
+  fixedValueWithDiscount?: number;
+  /**
+   * Currency code for the promotion
+   * @example "USD"
+   */
+  currencyCode?: string;
 }
 
 /** Object with available properties that can be updated for subscriber.  */
@@ -427,6 +507,30 @@ export class Api<
     ) =>
       this.request<Payment[], ProblemDetail>({
         path: `/subscriber/payment`,
+        method: "GET",
+        query: query,
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Promotions
+     * @name SubscriberPromoGet
+     * @request GET:/subscriber/promo
+     * @secure
+     */
+    subscriberPromoGet: (
+      query: {
+        /** @pattern ^[\d]{10,15}$ */
+        msisdn: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<PromotionRecord[], ProblemDetail>({
+        path: `/subscriber/promo`,
         method: "GET",
         query: query,
         secure: true,
