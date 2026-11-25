@@ -1,6 +1,6 @@
 'use client';
 
-import {YouMainMenuItems} from '@smarty-app/components';
+import {PromotionCard, YouMainMenuItems} from '@smarty-app/components';
 import {BackButtonType} from '@smarty-app/core';
 import {en} from '@smarty-app/language';
 import {View} from 'react-native';
@@ -20,6 +20,7 @@ export default function Index() {
       }}>
       <View className="flex flex-col smarty-gap-2xl">
         <YouMainMenuItems />
+        <PromotionCard />
       </View>
     </StackRootView>
   );
