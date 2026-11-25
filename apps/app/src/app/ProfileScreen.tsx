@@ -1,4 +1,4 @@
-import {YouMainMenuItems} from '@smarty-app/components';
+import {PromotionCard, YouMainMenuItems} from '@smarty-app/components';
 import {SmartyTopBar} from '@smarty-app/controls';
 import {SmartyScrollView} from '@smarty-app/controls-basic';
 import {BackButtonType} from '@smarty-app/core';
@@ -29,6 +29,7 @@ export function ProfileScreen() {
           style={{paddingBottom: bottomSpacing}}>
           <View className="smarty-mx-m smarty-gap-2xl">
             <YouMainMenuItems />
+            <PromotionCard />
           </View>
         </View>
       </SmartyScrollView>

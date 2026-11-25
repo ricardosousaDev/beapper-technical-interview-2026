@@ -18,6 +18,7 @@ export function mapSubscriberDtoToUser(dto: SubscriberDto): User {
     surname: dto.surname ?? '',
     email: dto.email ?? '',
     contactPhoneNumber: dto.altContactNumber ?? '',
+    msisdn: dto.msisdn ?? '',
     dateOfBirth: mapDateStringToSmartyDate(dto.dateOfBirth),
   };
 }

@@ -6,6 +6,7 @@ export interface User {
   surname: string;
   email: string;
   contactPhoneNumber: string;
+  msisdn: string;
   dateOfBirth: SmartyDate;
 }
 
