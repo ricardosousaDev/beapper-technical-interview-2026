@@ -10,6 +10,7 @@ export * from './list-items/SmartyActionListItem';
 export * from './list-items/SmartyActionListSwitch';
 export * from './list-items/SmartyFlatList';
 export * from './loading/loading';
+export * from './promo-card/SmartyPromoCard';
 export * from './top-bar/hooks/topBarCommonHooks';
 export * from './top-bar/hooks/topBarHooks';
 export * from './top-bar/SmartyTopBar';

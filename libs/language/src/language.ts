@@ -4,6 +4,7 @@ import {commonStrings} from './commonStrings';
 import {loginStrings} from './loginStrings';
 import {paymentHistoryStrings} from './paymentHistoryStrings';
 import {personalDetailsStrings} from './personalDetailsStrings';
+import {promotionStrings} from './promotionStrings';
 
 export const en = {
   ...accessibilityStrings,
@@ -12,4 +13,5 @@ export const en = {
   ...paymentHistoryStrings,
   ...personalDetailsStrings,
   ...loginStrings,
+  ...promotionStrings,
 };
