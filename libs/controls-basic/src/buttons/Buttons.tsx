@@ -554,7 +554,7 @@ export function SmartyDismissButton(
     <SmartyPressable
       accessibilityLabel={en.accessibilityDismiss}
       className={cn(
-        `rounded-full h-6 w-6`,
+        `rounded-full h-6 w-6 items-center justify-center`,
         // showBackground needs to be explicitly set to true in order to appear (as default is off in designs).
         showBackground === true && 'bg-background-primary',
         className,
