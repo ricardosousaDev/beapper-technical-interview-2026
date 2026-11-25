@@ -132,10 +132,11 @@ Then check your screen in the browser with each mock scenario.
 
 ## Submitting
 
-1. **Create your own private copy.** Click **Use this template → Create a new repository** on GitHub and choose **Private**. Don't fork the repository: forks are public.
+1. **Create your own copy.** Click **Use this template → Create a new repository** on GitHub and choose **Public** to make it easier for us to look at it.
 2. **Commit as you go.** Your commit history helps us follow how you approached the task.
-3. **Share it with us.** Add **`ricardosousaDev`** as a collaborator and send us the link.
+3. **Share it with us.** Send us the link to your repository as soon as you finish the task.
 4. **Add a short note** (a `NOTES.md` is fine) covering any decisions or trade-offs you made, and anything you'd do with more time.
+5. **At the end of the interview** we ask you to please delete your public repository.
 
 ## What we'll look at
 
